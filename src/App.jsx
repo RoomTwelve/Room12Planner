@@ -1203,8 +1203,37 @@ const HomeScreen = ({ schools, onNavigate }) => {
       <div className="hero">
         <div className="hero-ey">Room Twelve · Strategic Funding Planner</div>
         <div className="hero-val">{schools.length>0?`${schools.length} school${schools.length>1?"s":""} · ${allPlans.length} plan${allPlans.length!==1?"s":""}`:""}</div>
-        <div className="hero-sub">{schools.length>0?`${la.length} lease asset${la.length!==1?"s":""} planned`:"Add a school in the Planner tab to get started"}</div>
+        <div className="hero-sub">{schools.length>0?`${la.length} lease asset${la.length!==1?"s":""} planned`:"Build your lease budget plan"}</div>
       </div>
+
+      {schools.length===0&&(
+        <div style={{background:"var(--white)",borderRadius:"var(--r)",border:"2px solid var(--b)",padding:"20px",marginBottom:14,textAlign:"center"}}>
+          <div style={{fontSize:28,marginBottom:10}}>🏫</div>
+          <div style={{fontSize:16,fontWeight:800,color:"var(--navy)",marginBottom:8}}>Get started in 3 steps</div>
+          <div style={{display:"flex",flexDirection:"column",gap:10,textAlign:"left"}}>
+            {[
+              {n:"1",t:"Tap the Planner tab below",s:"＋ Planner"},
+              {n:"2",t:"Add your school and a plan name",s:"e.g. ICT refresh 2025–26"},
+              {n:"3",t:"Add assets to see your lease budget",s:"Lease figures calculated instantly"},
+            ].map(({n,t,s})=>(
+              <div key={n} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 12px",background:"var(--sx)",borderRadius:"var(--rs)"}}>
+                <div style={{width:28,height:28,borderRadius:"50%",background:"var(--b)",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:800,flexShrink:0}}>{n}</div>
+                <div>
+                  <div style={{fontSize:13,fontWeight:700,color:"var(--navy)"}}>{t}</div>
+                  <div style={{fontSize:11,color:"var(--t3)",marginTop:2}}>{s}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button
+            className="btn pri btn-full"
+            style={{marginTop:14,fontSize:14,padding:"13px"}}
+            onClick={()=>onNavigate("input")}
+          >
+            + Add your first school →
+          </button>
+        </div>
+      )}
       {schools.length>0&&(
         <>
           <div className="mg" style={{marginBottom:14}}>
@@ -1244,7 +1273,7 @@ const HomeScreen = ({ schools, onNavigate }) => {
       </div>
       <div className="ins green">
         <div className="ins-tag">Predictable costs protect your budget</div>
-        <div className="ins-t" style={{color:"#1a5c3a"}}>Unlike outright purchases, lease payments are <strong>fixed for the full term</strong> — giving you certainty over your budget regardless of inflation, supply chain pressures or future price rises.</div>
+        <div className="ins-t" style={{color:"#1a5c3a"}}>Lease payments are <strong>fixed for the full term</strong> — giving you certainty over your budget regardless of inflation, supply chain pressures or future price rises.</div>
       </div>
       <div className="ins" style={{background:"var(--pl)",borderColor:"rgba(107,79,160,0.2)"}}>
         <div className="ins-tag" style={{color:"var(--purple)"}}>Always have the latest technology</div>
